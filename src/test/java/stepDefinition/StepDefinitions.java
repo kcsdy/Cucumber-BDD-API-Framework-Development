@@ -1,5 +1,6 @@
 package stepDefinition;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class StepDefinitions extends Utils {
 	Response resp;
 	RequestSpecification req;
 	@Given("Add Place Payload")
-	public void add_place_payload() {
+	public void add_place_payload() throws FileNotFoundException {
 		
 		req = requestSpec();
 		
