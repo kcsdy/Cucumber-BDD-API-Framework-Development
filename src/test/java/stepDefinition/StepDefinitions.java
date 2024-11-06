@@ -1,6 +1,6 @@
 package stepDefinition;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,18 +25,22 @@ public class StepDefinitions extends Utils {
 
 	TestDataBuild tdb = new TestDataBuild();
 	Response resp;
+	RequestSpecification respc;
 	RequestSpecification req;
-	@Given("Add Place Payload")
-	public void add_place_payload() throws FileNotFoundException {
+
+	@Given("Add Place Payload with {string} {string} {string}")
+	public void add_place_payload_with(String name,String language,String address) throws IOException {
 		
 		req = requestSpec();
+		
+		respc = given().spec(req).body(tdb.addPlacePayload(name,address,language));
 		
 	}
 
 	@When("user calls {string} with post http request")
 	public void user_calls_with_post_http_request(String string) {
 	    
-		resp = given().log().all().spec(req).body(tdb.addPlacePayload()).when().post("/maps/api/place/add/json");
+		resp = respc.when().post("/maps/api/place/add/json");
 	}
 
 	@Then("the response should have status code of {int}")

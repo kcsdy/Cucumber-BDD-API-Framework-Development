@@ -8,14 +8,14 @@ import pojoforMaps.addPlace;
 
 public class TestDataBuild {
 
-	public addPlace addPlacePayload() {
+	public addPlace addPlacePayload(String name,String address,String language) {
 		addPlace p = new addPlace();
 		p.setAccuracy(50);
-		p.setAddress("38, Deramone Avenue, cohen 09");
+		p.setAddress(address);
 		p.setPhone_number("\"(+91) 983 893 3937");
-		p.setName("White House Kaka");
+		p.setName(name);
 		p.setWebsite("http://google.com");
-		p.setLanguage("French-IN");
+		p.setLanguage(language);
 		Location l = new Location();
 		l.setLat(-38.383422);
 		l.setLng(33.427311);
