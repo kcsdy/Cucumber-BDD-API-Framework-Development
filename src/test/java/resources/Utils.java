@@ -17,25 +17,26 @@ public class Utils {
 	public static RequestSpecification req;
 
 	public RequestSpecification requestSpec() throws IOException {
-		if (req != null) {
+		
+		if(req==null) {
 			PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
-			req = new RequestSpecBuilder().setBaseUri(globalProperties())
+			req = new RequestSpecBuilder().setBaseUri(globalProperties("baseUrl"))
 					.addQueryParam("key", "qaclick123").setContentType(ContentType.JSON)
 					.addFilter(RequestLoggingFilter.logRequestTo(log))
 					.addFilter(ResponseLoggingFilter.logResponseTo(log)).build();
 
-			return req;
+		return req;
 		}
 		return req;
 	}
 
-	public String globalProperties() throws IOException {
+	public String globalProperties(String key) throws IOException {
 		Properties prop = new Properties();
 		FileInputStream fis = new FileInputStream(
 				"E:\\Cucumber BDD API Framework Development\\APIFramework\\src\\test\\java\\resources\\global.properties");
 
 		prop.load(fis);
 		
-		return prop.getProperty("baseUrl");
+		return prop.getProperty(key);
 	}
 }

@@ -26,16 +26,13 @@ public class StepDefinitions extends Utils {
 	TestDataBuild tdb = new TestDataBuild();
 	Response resp;
 	RequestSpecification respc;
-	RequestSpecification req;
+	
 
 	@Given("Add Place Payload with {string} {string} {string}")
-	public void add_place_payload_with(String name,String language,String address) throws IOException {
-		
-		req = requestSpec();
-		
-		respc = given().spec(req).body(tdb.addPlacePayload(name,address,language));
-		
+	public void add_place_payload_with(String name, String address, String language) throws IOException {
+		respc = given().spec(requestSpec()).body(tdb.addPlacePayload(name,address,language));
 	}
+	
 
 	@When("user calls {string} with post http request")
 	public void user_calls_with_post_http_request(String string) {
