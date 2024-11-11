@@ -27,7 +27,7 @@ Body:
     "language": "Hindi"
 }
 HTTP/1.1 200 OK
-Date: Sat, 09 Nov 2024 21:12:57 GMT
+Date: Mon, 11 Nov 2024 23:47:58 GMT
 Server: Apache/2.4.52 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
@@ -40,55 +40,21 @@ Content-Type: application/json;charset=UTF-8
 
 {
     "status": "OK",
-    "place_id": "0830c626e26d7bb2b14be2c45a5d260a",
+    "place_id": "35905de7332bff7898a20ececfdf7eaf",
     "scope": "APP",
-    "reference": "0026f33b7b67958424cdb012e370d8dc0026f33b7b67958424cdb012e370d8dc",
-    "id": "0026f33b7b67958424cdb012e370d8dc"
+    "reference": "b8f9458c92f47f3182bb16b7666cf0bab8f9458c92f47f3182bb16b7666cf0ba",
+    "id": "b8f9458c92f47f3182bb16b7666cf0ba"
 }
-Request method:	POST
-Request URI:	https://rahulshettyacademy.com/maps/api/place/add/json?key=qaclick123
+Request method:	GET
+Request URI:	https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=35905de7332bff7898a20ececfdf7eaf
 Proxy:			<none>
 Request params:	<none>
 Query params:	key=qaclick123
+				place_id=35905de7332bff7898a20ececfdf7eaf
 Form params:	<none>
 Path params:	<none>
 Headers:		Accept=*/*
 				Content-Type=application/json
 Cookies:		<none>
 Multiparts:		<none>
-Body:
-{
-    "location": {
-        "lat": -38.383422,
-        "lng": 33.427311
-    },
-    "accuracy": 50,
-    "name": "Sonti Mama",
-    "phone_number": "\"(+91) 983 893 3937",
-    "address": "Bangalore",
-    "types": [
-        "shoe park",
-        "Ormeaue Park"
-    ],
-    "website": "http://google.com",
-    "language": "Kanad"
-}
-HTTP/1.1 200 OK
-Date: Sat, 09 Nov 2024 21:12:59 GMT
-Server: Apache/2.4.52 (Ubuntu)
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Methods: POST
-Access-Control-Max-Age: 3600
-Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With
-Content-Length: 194
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
-Content-Type: application/json;charset=UTF-8
-
-{
-    "status": "OK",
-    "place_id": "de631f28616a421eda0271e16f2c7f84",
-    "scope": "APP",
-    "reference": "918503bf4083c55ee132060c5ecceab7918503bf4083c55ee132060c5ecceab7",
-    "id": "918503bf4083c55ee132060c5ecceab7"
-}
+Body:			<none>

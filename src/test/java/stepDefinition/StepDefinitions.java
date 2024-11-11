@@ -18,41 +18,61 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import pojoforMaps.Location;
 import pojoforMaps.addPlace;
+import resources.APIResource;
 import resources.TestDataBuild;
 import resources.Utils;
 
 public class StepDefinitions extends Utils {
 
 	TestDataBuild tdb = new TestDataBuild();
-	Response resp;
-	RequestSpecification respc;
-	
+	Response response;
+	RequestSpecification req;
+
 
 	@Given("Add Place Payload with {string} {string} {string}")
 	public void add_place_payload_with(String name, String address, String language) throws IOException {
-		respc = given().spec(requestSpec()).body(tdb.addPlacePayload(name,address,language));
+		req = given().spec(requestSpec()).body(tdb.addPlacePayload(name, address, language));
 	}
-	
 
-	@When("user calls {string} with post http request")
-	public void user_calls_with_post_http_request(String string) {
-	    
-		resp = respc.when().post("/maps/api/place/add/json");
+	@When("user calls {string} with {string} http request")
+	public void user_calls_with_http_request(String resource, String httpMethod) {
+
+		APIResource respp = APIResource.valueOf(resource);
+		if (httpMethod.equalsIgnoreCase("POST")) {
+			
+			response = req.when().post(respp.getResouce());
+		} else if (httpMethod.equalsIgnoreCase("GET")) {
+
+			response = req.when().get(respp.getResouce());
+		}
 	}
 
 	@Then("the response should have status code of {int}")
 	public void the_response_should_have_status_code_of(Integer int1) {
-		resp.then().log().all().assertThat().statusCode(int1)
-				.extract().response().asString();
-		
+		response.then().log().all().assertThat().statusCode(int1).extract().response().asString();
+
 	}
 
 	@Then("{string} in response body is {string}")
 	public void in_response_body_is(String key, String value) {
-		String response = resp.then().assertThat().statusCode(200)
-				.extract().response().asString();
-		JsonPath js = new JsonPath(response);
-		Assert.assertTrue(js.getString(key).equalsIgnoreCase(value));
+		
+		Assert.assertTrue(getJsonPath(response,key).equalsIgnoreCase(value));
+	}
+
+	@Then("verify the place_id to validate {string} using {string}")
+	public void verify_the_place_id_to_validate_using(String name,String resource) throws IOException {
+
+		// get API call
+
+		APIResource apires = APIResource.valueOf(resource);
+
+		String placeId = getJsonPath(response,"place_id");
+		req = given().spec(requestSpec()).queryParam("place_id", placeId);
+		user_calls_with_http_request(resource,"GET");
+		
+		String Name = getJsonPath(response,"name");
+		Assert.assertTrue(Name.equalsIgnoreCase(name));
+
 	}
 
 }
