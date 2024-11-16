@@ -35,13 +35,6 @@
 			<version>2.18.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.groovy/groovy -->
-		<dependency>
-			<groupId>org.apache.groovy</groupId>
-			<artifactId>groovy</artifactId>
-			<version>5.0.0-alpha-10</version>
-		</dependency>
-
 	</dependencies>
 
 </project>

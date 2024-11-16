@@ -12,3 +12,7 @@ Feature: Validating Place API's
       | name       | address             | language |
       | Kutty kaka | 19 Deramore Gardens | Hindi    |
  #     | Sonti Mama | Bangalore           | Kanad    |
+
+ Scenario: Delete the place using DeletePlaceAPI
+ 		Given Delete place Payload
+ 		When user calls "DeletePlaceAPI" with "Post" http request
